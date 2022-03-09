@@ -1,9 +1,131 @@
-<div>
-  <div class="no-margin text-center" mat-dialog-title>
-    <div class="header">
-      <h2>ReasonOfRefuse</h2>
+<div class="no-margin text-center" mat-dialog-title>
+  <div class="header">  
+    <img src="../../../assets/images/logo.png" alt="" class="logo" />
+  </div>
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Registration</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form (ngSubmit)="onSubmit()">
+            <div class="row clearfix">
+              <div class="col_half">
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <input 
+                  #fname ="ngModel"
+                  type="text" 
+                  name="fristName" 
+                  [(ngModel)]="reg.fristName"
+                  placeholder="First Name" 
+                  minlength="3"
+                  required/>
+                  <div *ngIf="fname.invalid && (fname.dirty || fname.touched)"
+                  class="alert">
+                  <div *ngIf="fname.errors?.['required']">
+                    <font color="red">Name is required.</font>
+                  </div>
+                  <div *ngIf="fname.errors?.['minlength']">
+                    <font color="red">Name must be at least 3 characters long.</font>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <div class="col_half">
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <input
+                  #lname ="ngModel"
+                  type="text" 
+                  name="lastName" 
+                  [(ngModel)]="reg.lastName"
+                  placeholder="Last Name" 
+                  minlength="3"
+                  required
+                  />
+                  <div *ngIf="lname.invalid && (lname.dirty || lname.touched)"
+                  class="alert">
+                  <div *ngIf="lname.errors?.['required']">
+                    <font color="red">Name is required.</font>
+                  </div>
+                  <div *ngIf="lname.errors?.['minlength']">
+                    <font color="red">Name must be at least 3 characters long.</font>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="input_field">
+              <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+              <input
+              #email="ngModel" 
+              type="email" 
+              name="email" 
+              [(ngModel)]="reg.email"
+              placeholder="Email" 
+              required
+              pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" />
+              <div *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="alert">
+              <div *ngIf="email.errors?.['required']">
+                <font color="red">Email is required.</font>
+              </div>
+              <div *ngIf="email.errors?.['minlength']">
+                <font color="red">Email must be at least 3 characters long.</font>
+              </div>
+              <div *ngIf="email.errors?.['pattern']">
+                <font color="red">Please insert a valid email.</font>
+              </div>
+              </div>
+            </div>
+            <div class="input_field">
+              <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+              <input
+                #password="ngModel"
+                type="password"
+                name="password"
+                [(ngModel)]="reg.password"
+                placeholder="Password"
+                required
+                minlength="6"
+              />
+              <div *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="alert">
+              <div *ngIf="password.errors?.['required']">
+                <font color="red">Password is required.</font>
+              </div>
+              <div *ngIf="password.errors?.['minlength']">
+                <font color="red">Password must be at least 6 characters long.</font>
+              </div>
+              </div>
+            </div>
+            <div class="input_field">
+              <span><i aria-hidden="true" class="fa fa-phone"></i></span>
+              <input
+                #phone="ngModel"
+                type="tel"
+                name="phoneNumber"
+                [(ngModel)]="reg.phoneNumber"
+                placeholder="Phone Number"
+                required
+              />
+              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+              class="alert">
+              <div *ngIf="phone.errors?.['required']">
+                <font color="red">Phone is required.</font>
+              </div>
+              </div>
+            </div>
+            <input class="button" type="submit" value="Register" />
+          </form>
+        </div>
+      </div>
     </div>
-    <form (ngSubmit)="onSubmit()" style="width: 500px">
+  </div>
+  <!-- <form (ngSubmit)="onSubmit()" style="width: 500px">
+      <span><i aria-hidden="true" class="fa fa-user"></i></span>
       <mat-form-field appearance="fill" style="width: 450px">
         <mat-label>fristName</mat-label>
         <input
@@ -66,6 +188,5 @@
       <div mat-dialog-actions>
         <button type="submit" cdkFocusInitial>Register</button>
       </div>
-    </form>
-  </div>
+    </form> -->
 </div>

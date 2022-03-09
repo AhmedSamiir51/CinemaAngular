@@ -1,35 +1,78 @@
-<div>
+<div class="form-container">
   <div class="no-margin text-center" mat-dialog-title>
-    <div class="header">
-      <h2>ReasonOfRefuse</h2>
+    <div class="header">  
+      <img src="../../../assets/images/logo.png" alt="" class="logo" />
     </div>
-    <form (ngSubmit)="onSubmit()" style="width: 500px">
-      <mat-form-field appearance="fill" style="width: 450px">
-        <mat-label>email</mat-label>
-        <input
-          matInput
-          placeholder="Email"
-          name="email"
-          [(ngModel)]="model.email"
-          required
-          pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-        />
-      </mat-form-field>
-      <br />
-      <mat-form-field appearance="fill" style="width: 450px">
-        <mat-label>password</mat-label>
-        <input
-          matInput
-          placeholder="Password"
-          name="password"
-          [(ngModel)]="model.password"
-          required
-        />
-      </mat-form-field>
-
-      <div mat-dialog-actions>
-        <button type="submit" cdkFocusInitial>Login</button>
+    <div class="form_wrapper">
+      <div class="form_container">
+        <div class="title_container">
+          <h2>Login</h2>
+        </div>
+        <div class="row clearfix">
+          <div class="">
+            <form (ngSubmit)="onSubmit()">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                <input
+                  #email="ngModel"
+                  type="email"
+                  name="email"
+                  [(ngModel)]="model.email"
+                  placeholder="Email"
+                  required
+                />
+                <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                  class="alert">
+                  <div *ngIf="email.errors?.['required']">
+                    <font color="red">Email is required.</font>
+                  </div>
+                </div>
+              </div>
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                <input
+                  #password="ngModel"
+                  type="password"
+                  name="password"
+                  [(ngModel)]="model.password"
+                  placeholder="Password"
+                  required
+                />
+                <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                  class="alert">
+                  <div *ngIf="password.errors?.['required']">
+                    <font color="red">Password is required.</font>
+                  </div>
+                </div>
+              </div>
+              <input class="button" type="submit" value="Login" />
+            </form>
+          </div>
+        </div>
       </div>
-    </form>
+    </div>
+    <!-- <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+      <mat-form-field appearance="outline" style="width: 90%">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput [(ngModel)]="model.email"/>
+          <mat-error>Email is required</mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" style="width: 90%; margin-top: 10px; margin-bottom: 20px;">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput type="password" [(ngModel)]="model.password"/>
+          <mat-error>Password is required</mat-error>
+      </mat-form-field>
+    
+      <button class="login-button" mat-raised-button [disabled]="form.invalid">
+          Login
+      </button>
+    </form> -->
   </div>
 </div>
+
+
+
+
+
