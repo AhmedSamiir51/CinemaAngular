@@ -18,7 +18,7 @@
           <a routerLink="/home">Home</a>
         </li>
         <li class="menu-item">
-          <a *ngIf="!admin" routerLink="/about">About</a>
+          <a routerLink="/about">About</a>
         </li>
 
         <li class="menu-item"><a routerLink="/contact">Contact</a></li>
@@ -34,6 +34,16 @@
         </li>
         <li class="menu-item">
           <a *ngIf="!out" mat-button (click)="logout()">logOut</a>
+        </li>
+
+        <li class="dropdown">
+          <button class="dropbtn">Dropdown</button>
+          <div class="dropdown-content">
+            <a routerLink="/MoviesCrud">Movies </a>
+            <a routerLink="/TimesCrud">Times</a>
+            <a routerLink="/HallsCrud">Halls</a>
+            <a routerLink="/BookingCrud">Booking</a>
+          </div>
         </li>
       </ul>
       <!-- .menu -->
