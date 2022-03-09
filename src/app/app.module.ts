@@ -1,3 +1,4 @@
+import { CreateHallsComponent } from './page/cruds/halls/create-halls/create-halls.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -55,9 +56,29 @@ import { MovieComponent } from './page/movie/movie.component';
 import { NavBarComponent } from './page/nav-bar/nav-bar.component';
 import { AboutUsComponent } from './page/about-us/about-us.component';
 import { ContactComponent } from './page/contact/contact.component';
+import { TimesComponent } from './page/cruds/times/times.component';
+import { HallsComponent } from './page/cruds/halls/halls.component';
+import { MoviesComponent as Movies } from './page/cruds/movies/movies.component';
+import { BookingComponent as  Booking} from './page/cruds/booking/booking.component';
+import {A11yModule} from '@angular/cdk/a11y';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {PortalModule} from '@angular/cdk/portal';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import { DeleteHallsComponent } from './page/cruds/halls/delete-halls/delete-halls.component';
+import { EditHallsComponent } from './page/cruds/halls/edit-halls/edit-halls.component';
+
+
+
+
 
 @NgModule({
   declarations: [
+    Movies,
+    Booking,
     AppComponent,
     HomeComponent,
     RegisterComponent,
@@ -67,9 +88,23 @@ import { ContactComponent } from './page/contact/contact.component';
     MovieComponent,
     NavBarComponent,
     AboutUsComponent,
-    ContactComponent
+    ContactComponent,
+    TimesComponent,
+    HallsComponent,
+    CreateHallsComponent,
+    DeleteHallsComponent,
+    EditHallsComponent
   ],
   imports: [
+
+    A11yModule,
+    ClipboardModule
+    ,DragDropModule,
+    PortalModule,
+    ScrollingModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
