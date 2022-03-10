@@ -4,33 +4,30 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class HallsService {
+export class TimesService {
 
   constructor(public http:HttpClient) { }
-  baseUrl="https://localhost:44385/api/Halls"
+  baseUrl="https://localhost:44385/api/Times"
 
 
-  GetHalls( ) {
+  GetAllTimes( ) {
     return this.http.get<any[]>( this.baseUrl+"/GetAll" );
   }
 
-  getHallById(i:number){
+  getTimes(i:number){
     return this.http.get<any>(this.baseUrl+"/"+i)
   }
 
-  addHalls(body:any){
+  addTimes(body:any){
     return this.http.post<any>(this.baseUrl+"/",body)
   }
 
-  editHalls(edit:any){
+
+  editTimes(edit:any){
     return this.http.put(this.baseUrl+"/"+edit.id,edit)
   }
 
-
-  deleteHalls(id:number){
+  deleteTimes(id:number){
     return this.http.delete(this.baseUrl+"/"+id)
   }
-
-
-
 }

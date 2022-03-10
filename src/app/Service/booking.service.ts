@@ -11,12 +11,26 @@ export class BookingService {
 
 
 
-  getAllTimes() {
-    return this.http.get<any[]>(this.baseUrl + "/GetTimes"  );
+  getAllBooking() {
+    return this.http.get<any[]>(this.baseUrl  );
+  }
+
+  getBooking(i:number){
+    return this.http.get<any>(this.baseUrl+"/"+i)
+  }
+
+  addBooking(body:any){
+    return this.http.post<any>(this.baseUrl+"/",body)
+  }
+
+  editBooking(edit:any){
+    return this.http.put(this.baseUrl+"/"+edit.id,edit)
   }
 
 
-  getAllHalls() {
-    return this.http.get<any[]>(this.baseUrl + "/GetHalls"  );
+  deleteBooking(id:number){
+    return this.http.delete(this.baseUrl+"/"+id)
   }
+
+
 }

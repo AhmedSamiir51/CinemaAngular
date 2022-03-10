@@ -70,6 +70,12 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import { DeleteHallsComponent } from './page/cruds/halls/delete-halls/delete-halls.component';
 import { EditHallsComponent } from './page/cruds/halls/edit-halls/edit-halls.component';
+import { CreateTimesComponent } from './page/cruds/times/create-times/create-times.component';
+import { EditTimesComponent } from './page/cruds/times/edit-times/edit-times.component';
+import { DelteTimesComponent } from './page/cruds/times/delte-times/delte-times.component';
+import { DelteBookingComponent } from './page/cruds/booking/delte-booking/delte-booking.component';
+import { EditBookingComponent } from './page/cruds/booking/edit-booking/edit-booking.component';
+import { CreateBookingComponent } from './page/cruds/booking/create-booking/create-booking.component';
 
 
 
@@ -93,7 +99,13 @@ import { EditHallsComponent } from './page/cruds/halls/edit-halls/edit-halls.com
     HallsComponent,
     CreateHallsComponent,
     DeleteHallsComponent,
-    EditHallsComponent
+    EditHallsComponent,
+    CreateTimesComponent,
+    EditTimesComponent,
+    DelteTimesComponent,
+    DelteBookingComponent,
+    EditBookingComponent,
+    CreateBookingComponent
   ],
   imports: [
 

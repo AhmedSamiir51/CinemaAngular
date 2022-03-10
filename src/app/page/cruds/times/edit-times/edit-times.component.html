@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 mat-dialog-title>Edit Halls</h3>
+  <h3 mat-dialog-title>Edit Times</h3>
 
   <form
     class="mat-dialog-content"
@@ -14,25 +14,8 @@
           class="form-control"
           placeholder="Id"
           [(ngModel)]="data.id"
-          name="Client_Id"
+          name="id"
         />
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input
-          matInput
-          #input
-          class="form-control"
-          placeholder="Hall Name"
-          [(ngModel)]="data.name"
-          name="name"
-          required
-        />
-        <mat-error *ngIf="formControl.invalid">{{
-          getErrorMessage()
-        }}</mat-error>
       </mat-form-field>
     </div>
 
@@ -41,11 +24,10 @@
         <input
           matInput
           #inputstate
-          type="number"
           class="form-control"
-          placeholder="limit"
-          [(ngModel)]="data.limit"
-          name="limit"
+          placeholder="description"
+          [(ngModel)]="data.description"
+          name="description"
           required
         />
         <mat-error *ngIf="formControl.invalid">{{

@@ -5,7 +5,7 @@
       <div class="page">
         <div class="breadcrumbs">
           <a routerLink="/home">Home</a>
-          <span>Contact</span>
+          <span>Halls</span>
         </div>
 
         <div
@@ -21,6 +21,10 @@
                 <mat-icon aria-label="Example icon-button with a heart icon"
                   >add</mat-icon
                 >
+              </button>
+
+              <button mat-icon-button (click)="getAllHalls()">
+                <mat-icon>refresh</mat-icon>
               </button>
             </mat-toolbar>
 

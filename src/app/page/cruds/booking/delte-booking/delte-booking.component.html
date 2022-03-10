@@ -1,9 +1,15 @@
 <div class="container">
   <h3 mat-dialog-title style="color: red">Are you sure?</h3>
   <div mat-dialog-content>
-    Hall Name: {{ data.name }}
+    User Name: {{ data.row.user.fristName }} {{ data.row.user.lastName }}
     <p></p>
-    Limit: {{ data.limit }}
+    Movie Name: {{ data.row.movies.name }}
+    <p></p>
+    Hall Name: {{ data.row.halls.name }}
+    <p></p>
+    Time: {{ data.row.times.description }}
+    <p></p>
+    Date: {{ data.row.dayBooking | date }}
     <p></p>
   </div>
   <div mat-dialog-actions>

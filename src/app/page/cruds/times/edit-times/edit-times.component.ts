@@ -1,17 +1,17 @@
-import { HallsService } from './../../../../Service/halls.service';
+import { TimesService } from './../../../../Service/times.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-edit-halls',
-  templateUrl: './edit-halls.component.html',
-  styleUrls: ['./edit-halls.component.scss']
+  selector: 'app-edit-times',
+  templateUrl: './edit-times.component.html',
+  styleUrls: ['./edit-times.component.scss']
 })
-export class EditHallsComponent implements OnInit {
+export class EditTimesComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<EditHallsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: HallsService) { }
+  constructor(public dialogRef: MatDialogRef<EditTimesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: TimesService) { }
 
   ngOnInit(): void {
   }
@@ -33,7 +33,7 @@ export class EditHallsComponent implements OnInit {
   }
 
   stopEdit(): void {
-    this.dataService.editHalls(this.data).subscribe(e=>{console.log(e)},er=>{console.log(er)});
+    this.dataService.editTimes(this.data).subscribe(e=>{console.log(e)},er=>{console.log(er)});
 
     this.dialogRef.close();
 

@@ -1,0 +1,107 @@
+<div class="container">
+  <h3 mat-dialog-title>New Booking</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="(submit)" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Select User Name</mat-label>
+        <mat-select
+          required
+          disableRipple
+          [(ngModel)]="data.row.userId"
+          name="userId"
+        >
+          <mat-option *ngFor="let item of dataUser" [value]="item.id"
+            >{{ item.fristName }}{{ item.lastName }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Movie </mat-label>
+        <mat-select required [(ngModel)]="data.row.movieId" name="movieId">
+          <mat-option *ngFor="let item of dataMovies" [value]="item.id"
+            >{{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Time</mat-label>
+        <mat-select
+          required
+          disableRipple
+          [(ngModel)]="data.row.timerId"
+          name="timerId"
+        >
+          <mat-option *ngFor="let item of dataTimes" [value]="item.id"
+            >{{ item.description }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Hall</mat-label>
+        <mat-select
+          required
+          disableRipple
+          [(ngModel)]="data.row.hallsId"
+          name="hallsId"
+        >
+          <mat-option *ngFor="let item of dataHalls" [value]="item.id"
+            >{{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <!-- [(ngModel)]="data.row.dayBooking" -->
+      <mat-form-field
+        class="example-full-width"
+        apperance="fill"
+        class="full-width mat-form-field-appearance-fill"
+      >
+        <input
+          required
+          #date="ngModel"
+          name="dayBooking"
+          id="dayBooking"
+          [(ngModel)]="data.row.dayBooking"
+          matInput
+          [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker> </mat-datepicker>
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Angular forms</mat-label>
+        <input matInput [matDatepicker]="picker1" [formControl]="date" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field> -->
+    </div>
+
+    <div mat-dialog-actions>
+      <button
+        mat-button
+        type="submit"
+        [disabled]="!formControl.valid"
+        [mat-dialog-close]="1"
+        (click)="confirmAdd()"
+      >
+        Save
+      </button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

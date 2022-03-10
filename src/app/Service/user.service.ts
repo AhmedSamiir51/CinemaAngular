@@ -16,13 +16,8 @@ export class UserService {
 
 
   getalluser(){
-    return this.http.get<RegisterModel[]>(this.baseUrl+"/User/User")
+    return this.http.get<any[]>(this.baseUrl+"GetAllUsers")
   }
-
-  getalluserById(id:number){
-    return this.http.get<RegisterModel>(this.baseUrl + "/User/"+id)
-  }
-
 
 
   register(formModel: any  ) {

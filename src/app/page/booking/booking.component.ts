@@ -16,8 +16,8 @@ export class BookingComponent implements OnInit {
   Times:any
   Halls:any
   ngOnInit(): void {
-    this.service.getAllHalls().subscribe(e=>this.Halls=e)
-    this.service.getAllTimes().subscribe(e=>this.Times=e)
+    // this.service.getAllHalls().subscribe(e=>this.Halls=e)
+    // this.service.getAllTimes().subscribe(e=>this.Times=e)
   }
   onSubmit() {
  }
