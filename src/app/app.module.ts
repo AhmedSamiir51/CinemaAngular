@@ -14,7 +14,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 
-
 /*Angular Material */
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -34,7 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatNativeDateModule, MatRippleModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter} from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -59,15 +58,15 @@ import { ContactComponent } from './page/contact/contact.component';
 import { TimesComponent } from './page/cruds/times/times.component';
 import { HallsComponent } from './page/cruds/halls/halls.component';
 import { MoviesComponent as Movies } from './page/cruds/movies/movies.component';
-import { BookingComponent as  Booking} from './page/cruds/booking/booking.component';
-import {A11yModule} from '@angular/cdk/a11y';
-import {ClipboardModule} from '@angular/cdk/clipboard';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {PortalModule} from '@angular/cdk/portal';
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import {CdkStepperModule} from '@angular/cdk/stepper';
-import {CdkTableModule} from '@angular/cdk/table';
-import {CdkTreeModule} from '@angular/cdk/tree';
+import { BookingComponent as Booking } from './page/cruds/booking/booking.component';
+import { A11yModule } from '@angular/cdk/a11y';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PortalModule } from '@angular/cdk/portal';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
 import { DeleteHallsComponent } from './page/cruds/halls/delete-halls/delete-halls.component';
 import { EditHallsComponent } from './page/cruds/halls/edit-halls/edit-halls.component';
 import { CreateTimesComponent } from './page/cruds/times/create-times/create-times.component';
@@ -76,10 +75,9 @@ import { DelteTimesComponent } from './page/cruds/times/delte-times/delte-times.
 import { DelteBookingComponent } from './page/cruds/booking/delte-booking/delte-booking.component';
 import { EditBookingComponent } from './page/cruds/booking/edit-booking/edit-booking.component';
 import { CreateBookingComponent } from './page/cruds/booking/create-booking/create-booking.component';
-
-
-
-
+import { CreateMovieComponent   } from './page/cruds/movies/create-movie/create-movie.component';
+import { EditMovieComponent } from './page/cruds/movies/edit-movie/edit-movie.component';
+import { DeleteMovieComponent } from './page/cruds/movies/delete-movie/delete-movie.component';
 
 @NgModule({
   declarations: [
@@ -100,18 +98,22 @@ import { CreateBookingComponent } from './page/cruds/booking/create-booking/crea
     CreateHallsComponent,
     DeleteHallsComponent,
     EditHallsComponent,
+
     CreateTimesComponent,
     EditTimesComponent,
     DelteTimesComponent,
     DelteBookingComponent,
     EditBookingComponent,
-    CreateBookingComponent
-  ],
+    CreateBookingComponent,
+    CreateMovieComponent,
+    EditMovieComponent,
+    DeleteMovieComponent,
+   ],
   imports: [
 
     A11yModule,
-    ClipboardModule
-    ,DragDropModule,
+    ClipboardModule,
+    DragDropModule,
     PortalModule,
     ScrollingModule,
     CdkStepperModule,
@@ -161,12 +163,12 @@ import { CreateBookingComponent } from './page/cruds/booking/create-booking/crea
     ReactiveFormsModule,
 
     ToastrModule.forRoot({
-      progressBar: true
+      progressBar: true,
     }),
     BrowserAnimationsModule,
     CommonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
