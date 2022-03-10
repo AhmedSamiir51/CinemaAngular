@@ -1,0 +1,78 @@
+<div class="container">
+  <h3 mat-dialog-title>New Movie</h3>
+  <form class="mat-dialog-content" (ngSubmit)="(submit)" #formControl="ngForm">
+    <!--Textarea for demo purposes-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          class="form-control"
+          matInput
+          type="text"
+          #input
+          placeholder="Name"
+          [(ngModel)]="data.name"
+          name="name"
+          required
+        />
+        <mat-error *ngIf="formControl.invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          type="file"
+          class="form-control"
+          #file
+          formControlName="ProfilePicture"
+          (change)="onFileChange(file.files)"
+          accept="image/*"
+        />
+        <mat-error *ngIf="formControl.invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          matInput
+          class="form-control"
+          #inputstate
+          placeholder="Trailer"
+          type="text"
+          [(ngModel)]="data.trailerUrl"
+          name="trailerUrl"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea
+          matInput
+          class="form-control"
+          placeholder="Notes"
+          [(ngModel)]="data.description"
+          name="Description"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button
+        mat-button
+        type="submit"
+        [disabled]="!formControl.valid"
+        [mat-dialog-close]="1"
+        (click)="confirmAdd()"
+      >
+        Save
+      </button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>
