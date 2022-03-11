@@ -78,6 +78,7 @@ import { CreateBookingComponent } from './page/cruds/booking/create-booking/crea
 import { CreateMovieComponent   } from './page/cruds/movies/create-movie/create-movie.component';
 import { EditMovieComponent } from './page/cruds/movies/edit-movie/edit-movie.component';
 import { DeleteMovieComponent } from './page/cruds/movies/delete-movie/delete-movie.component';
+import { RegisterForAdminComponent } from './page/register/register-for-admin/register-for-admin.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { DeleteMovieComponent } from './page/cruds/movies/delete-movie/delete-mo
     CreateMovieComponent,
     EditMovieComponent,
     DeleteMovieComponent,
+    RegisterForAdminComponent,
    ],
   imports: [
 
@@ -162,9 +164,8 @@ import { DeleteMovieComponent } from './page/cruds/movies/delete-movie/delete-mo
     MatTreeModule,
     ReactiveFormsModule,
 
-    ToastrModule.forRoot({
-      progressBar: true,
-    }),
+    ToastrModule.forRoot(),
+
     BrowserAnimationsModule,
     CommonModule,
   ],

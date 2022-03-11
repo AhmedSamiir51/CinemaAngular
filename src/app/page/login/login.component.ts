@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserService } from 'src/app/Service/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private UserServices: UserService,
+    private UserServices: UserService,private toastr: ToastrService,
     private formBuilder: FormBuilder
   ) {}
   model: LoginModel = new LoginModel();
@@ -36,8 +37,10 @@ export class LoginComponent implements OnInit {
       (data) => {
         window.location.reload();
         this.dialogRef.close();
+        this.toastr.success("Login Success Welcome")
+
       },
-      (err) => console.log(err)
+      (err) => this.toastr.error("Falid To Login Check Pass Or Email")
     );
   }
 

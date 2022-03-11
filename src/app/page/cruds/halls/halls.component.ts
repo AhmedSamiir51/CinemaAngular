@@ -31,11 +31,16 @@ export class HallsComponent implements OnInit {
   getAllHalls(){
     this.service.GetHalls().subscribe(e => {this.Datasource = new MatTableDataSource(e) ;
       this.Datasource.paginator = this.paginator;
-      console.log(e,"ssssss")
     },er=>{console.log(er)})
   }
 
 
+  refreshMoviesList() {
+    this.service.GetHalls().subscribe(e => {this.Datasource = new MatTableDataSource(e) ;
+      this.Datasource.paginator = this.paginator;
+    },er=>{console.log(er)})
+    this.ngOnInit();
+  }
 
 
   startEdit( id:number, name:string,limit:string ){
@@ -43,11 +48,17 @@ export class HallsComponent implements OnInit {
       data: {id: id, name: name, limit: limit  }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterOpened().subscribe((e) => {
       this.getAllHalls()
+      this.refreshMoviesList()
 
     });
-
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getAllHalls()
+      this.refreshMoviesList()
+    });
+    this.getAllHalls();
+    this.refreshMoviesList()
   }
 
   addNew() {
@@ -55,18 +66,34 @@ export class HallsComponent implements OnInit {
       data: {issue: Halls }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterOpened().subscribe((e) => {
       this.getAllHalls()
+      this.refreshMoviesList()
+
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getAllHalls()
+      this.refreshMoviesList()
+    });
+    this.getAllHalls();
+    this.refreshMoviesList()
   }
 
   deleteItem(id:number, name:string,limit:string ) {
     const dialogRef = this.dialog.open(DeleteHallsComponent, {
       data:{id: id, name: name, limit: limit  }
     });
-    dialogRef.afterClosed().subscribe(result => {
-    this.getAllHalls()
+    dialogRef.afterOpened().subscribe((e) => {
+      this.getAllHalls()
+      this.refreshMoviesList()
+
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getAllHalls()
+      this.refreshMoviesList()
+    });
+    this.getAllHalls();
+    this.refreshMoviesList()
   }
 
 

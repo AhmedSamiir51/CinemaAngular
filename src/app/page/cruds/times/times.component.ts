@@ -7,10 +7,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Halls } from 'src/app/model/Halls';
-import { HallsService } from 'src/app/Service/halls.service';
-import { CreateHallsComponent } from '../halls/create-halls/create-halls.component';
-import { DeleteHallsComponent } from '../halls/delete-halls/delete-halls.component';
-import { EditHallsComponent } from '../halls/edit-halls/edit-halls.component';
 
 @Component({
   selector: 'app-times',
@@ -31,6 +27,10 @@ export class TimesComponent implements OnInit {
   }
 
 
+  refreshMoviesList() {
+    this.GetAllTimes()
+    this.ngOnInit();
+  }
   GetAllTimes(){
     this.service.GetAllTimes().subscribe(e => {this.Datasource = new MatTableDataSource(e) ;
       this.Datasource.paginator = this.paginator;
@@ -46,10 +46,14 @@ export class TimesComponent implements OnInit {
       data: {id: id, description: description }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.GetAllTimes()
+    dialogRef.afterOpened().subscribe((e) => {
+      this.refreshMoviesList()
 
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.refreshMoviesList()
+    });
+    this.refreshMoviesList();
 
   }
 
@@ -57,18 +61,30 @@ export class TimesComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateTimesComponent, {
       data: {issue: Halls }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterOpened().subscribe((e) => {
       this.GetAllTimes()
+      this.refreshMoviesList()
     });
-  }
+    dialogRef.afterClosed().subscribe((result) => {
+      this.GetAllTimes()
+      this.refreshMoviesList()    });
+    this.GetAllTimes()
+    this.refreshMoviesList()  }
 
   deleteItem(id:number, description:string ) {
     const dialogRef = this.dialog.open(DelteTimesComponent, {
       data:{id: id, description: description  }
     });
-    dialogRef.afterClosed().subscribe(result => {
-    this.GetAllTimes()
+    dialogRef.afterOpened().subscribe((e) => {
+      this.GetAllTimes()
+      this.refreshMoviesList()
+
     });
-  }
+    dialogRef.afterClosed().subscribe((result) => {
+      this.GetAllTimes()
+      this.refreshMoviesList()
+     });
+      this.GetAllTimes()
+      this.refreshMoviesList()
+     }
 }

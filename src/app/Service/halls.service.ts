@@ -14,6 +14,15 @@ export class HallsService {
     return this.http.get<any[]>( this.baseUrl+"/GetAll" );
   }
 
+
+  GetHallsForMovies( ) {
+    return this.http.get<any[]>( this.baseUrl+"/GetAllWhereNotInMovie" );
+  }
+
+  GetHallsForMoviesbyid( id:number) {
+    return this.http.get<any[]>( this.baseUrl+"/GetAllWhereNotInMovie/"+id );
+  }
+
   getHallById(i:number){
     return this.http.get<any>(this.baseUrl+"/"+i)
   }

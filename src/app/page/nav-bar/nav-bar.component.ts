@@ -1,3 +1,4 @@
+import { RegisterForAdminComponent } from './../register/register-for-admin/register-for-admin.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -55,6 +56,7 @@ this.mService.GetTop3Moive().subscribe(e=>(
    logout() {
     this.router.navigateByUrl('/home');
     localStorage.removeItem('token');
+    localStorage.removeItem('Role');
     window.location.reload();
   }
 
@@ -71,6 +73,18 @@ this.mService.GetTop3Moive().subscribe(e=>(
 
  }
 
+ openDialogForAdmin()
+ {
+  const dialogRef = this.dialog.open(RegisterForAdminComponent,
+    {data: RegisterModel});
+
+  dialogRef.afterClosed().subscribe( data=>
+
+   console.log(data,"Login")
+
+  );
+
+}
 
 openDialogBooking(){
   const dialogRef = this.dialog.open(BookingComponent  );

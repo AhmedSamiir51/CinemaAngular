@@ -7,6 +7,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Halls } from 'src/app/model/Halls';
 import { HallsService } from 'src/app/Service/halls.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-booking',
@@ -17,7 +18,7 @@ export class CreateBookingComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<CreateBookingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public dataService: BookingService,
-     public UserService: UserService, public MoivesService: MoivesService,
+     public UserService: UserService, public MoivesService: MoivesService,private toastr: ToastrService,
      public TimesService: TimesService, public HallsService: HallsService
 
      ) { }
@@ -26,7 +27,6 @@ export class CreateBookingComponent implements OnInit {
     dataMovies:any
     dataTimes:any
     dataHalls:any
-    ssss?:Date
   ngOnInit(): void {
     this.data.dayBooking=new Date()
     this.UserService.getalluser().subscribe(e=>this.dataUser=e)
@@ -42,21 +42,20 @@ export class CreateBookingComponent implements OnInit {
   ]);
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Required field' :
-        '';
+    return this.formControl.hasError('required') ? 'Required field' :'';
   }
 
   submit() {
   // emppty stuff
   }
-
   onNoClick(): void {
     this.dialogRef.close();
-  }
 
+  }
   public confirmAdd(): void {
-    this.dataService.addBooking(this.data).subscribe(e=>{console.log(e) },er=>{console.log(er)});
+    this.dataService.addBooking(this.data)
+    .subscribe(e=>{this.toastr.success("Created Success") ,this.dialogRef.close()},
+    er=>{this.toastr.error("Faild On Create")});
     this.dialogRef.close();
   }
 }

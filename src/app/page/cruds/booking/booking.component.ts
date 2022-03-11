@@ -38,7 +38,10 @@ export class BookingComponent implements OnInit {
   }
 
 
-
+  refreshMoviesList() {
+    this.getAllHalls()
+    this.ngOnInit();
+  }
 
   startEdit( row:any){
 
@@ -46,9 +49,14 @@ export class BookingComponent implements OnInit {
       data: {row:row }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.getAllHalls()
+    dialogRef.afterOpened().subscribe((e) => {
+      this.refreshMoviesList()
+
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.refreshMoviesList()
+    });
+    this.refreshMoviesList();
 
   }
 
@@ -57,18 +65,28 @@ export class BookingComponent implements OnInit {
       data: {issue: Halls }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.getAllHalls()
+    dialogRef.afterOpened().subscribe((e) => {
+      this.refreshMoviesList()
+
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.refreshMoviesList()
+    });
+    this.refreshMoviesList();
   }
 
   deleteItem(row:any ) {
     const dialogRef = this.dialog.open(DelteBookingComponent, {
       data:{row:row}
     });
-    dialogRef.afterClosed().subscribe(result => {
-    this.getAllHalls()
+    dialogRef.afterOpened().subscribe((e) => {
+      this.refreshMoviesList()
+
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.refreshMoviesList()
+    });
+    this.refreshMoviesList();
   }
 
 }

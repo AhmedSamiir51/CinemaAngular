@@ -2,6 +2,7 @@ import { HallsService } from './../../../../Service/halls.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-halls',
@@ -11,7 +12,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class EditHallsComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EditHallsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: HallsService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,private toastr: ToastrService, public dataService: HallsService) { }
 
   ngOnInit(): void {
   }
@@ -30,10 +31,12 @@ export class EditHallsComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+
   }
 
   stopEdit(): void {
-    this.dataService.editHalls(this.data).subscribe(e=>{console.log(e)},er=>{console.log(er)});
+    this.dataService.editHalls(this.data)
+    .subscribe(e=>{this.toastr.success("Updated Success"),this.dialogRef.close()},er=>{this.toastr.error("Not Updated")});
 
     this.dialogRef.close();
 

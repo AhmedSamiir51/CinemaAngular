@@ -2,6 +2,7 @@ import { TimesService } from './../../../../Service/times.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-times',
@@ -11,7 +12,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class EditTimesComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EditTimesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: TimesService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastrService,public dataService: TimesService) { }
 
   ngOnInit(): void {
   }
@@ -33,9 +34,13 @@ export class EditTimesComponent implements OnInit {
   }
 
   stopEdit(): void {
-    this.dataService.editTimes(this.data).subscribe(e=>{console.log(e)},er=>{console.log(er)});
-
-    this.dialogRef.close();
-
-  }
+    this.dataService.editTimes(this.data)
+    .subscribe((e) => {
+      this.toastr.success("Updated Success"),this.dialogRef.close()
+    },
+    (er) => {
+      this.toastr.error("Not Updated")
+    }
+  );
+}
 }

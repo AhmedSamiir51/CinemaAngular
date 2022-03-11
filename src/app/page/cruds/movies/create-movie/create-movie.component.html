@@ -5,34 +5,14 @@
     <div class="form">
       <mat-form-field color="accent">
         <input
-          class="form-control"
           matInput
-          type="text"
-          #input
-          placeholder="Name"
+          #inputstate
+          class="form-control"
+          placeholder="Name "
           [(ngModel)]="data.name"
           name="name"
           required
         />
-        <mat-error *ngIf="formControl.invalid">{{
-          getErrorMessage()
-        }}</mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input
-          type="file"
-          class="form-control"
-          #file
-          formControlName="ProfilePicture"
-          (change)="onFileChange(file.files)"
-          accept="image/*"
-        />
-        <mat-error *ngIf="formControl.invalid">{{
-          getErrorMessage()
-        }}</mat-error>
       </mat-form-field>
     </div>
 
@@ -40,13 +20,29 @@
       <mat-form-field color="accent">
         <input
           matInput
-          class="form-control"
           #inputstate
-          placeholder="Trailer"
-          type="text"
-          [(ngModel)]="data.trailerUrl"
-          name="trailerUrl"
+          class="form-control"
+          placeholder="TraileUrl "
+          [(ngModel)]="data.TraileUrl"
+          name="TraileUrl"
+          required
         />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Hall</mat-label>
+        <mat-select
+          required
+          disableRipple
+          [(ngModel)]="data.idHalls"
+          name="idHalls"
+        >
+          <mat-option *ngFor="let item of dataHalls" value="{{ item.id }}"
+            >{{ item.name }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 
@@ -54,13 +50,35 @@
       <mat-form-field color="accent">
         <textarea
           matInput
-          class="form-control"
-          placeholder="Notes"
+          #inputstate
+          placeholder="Description"
           [(ngModel)]="data.description"
-          name="Description"
+          name="description"
+          required
         ></textarea>
       </mat-form-field>
     </div>
+    <br />
+
+    <input
+      type="file"
+      #file
+      formControlName="ProfilePicture"
+      (change)="onFileChange(file.files)"
+      accept="image/*"
+    />
+
+    <div style="margin-top: 15px">
+      <section class="example-section">
+        <mat-checkbox
+          [(ngModel)]="data.isVisibale"
+          [ngModelOptions]="{ standalone: true }"
+          class="example-margin"
+          >Is Visibale</mat-checkbox
+        >
+      </section>
+    </div>
+    <!-- [disabled]="!formControl.valid" -->
 
     <div mat-dialog-actions>
       <button

@@ -1,3 +1,4 @@
+import { CreateMovieComponent } from './create-movie/create-movie.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoivesService } from 'src/app/Service/moives.service';
 
@@ -5,10 +6,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 
-import { CreateMovieComponent } from './create-movie/create-movie.component';
+import { MoviesComponent as ss  } from 'src/app/page/movies/movies.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { DeleteMovieComponent } from './delete-movie/delete-movie.component';
 import { MovieModel } from 'src/app/model/Movie';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-movies',
@@ -21,25 +23,28 @@ export class MoviesComponent implements OnInit {
   moviesList: any;
   Datasource: any = new MatTableDataSource();
   displayedColumns: string[] = [
-    'ID',
+
     'Name',
     'Photo',
     'Description',
+    'Halls',
     'Actions',
   ];
 
   constructor(
-    private moviesService: MoivesService,
+    private moviesService: MoivesService, private toastr: ToastrService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.getAllMovies();
+
   }
 
   refreshMoviesList() {
     this.moviesService.GetAllMovies().subscribe((data) => {
-      this.moviesList = data;
+       this.Datasource = new MatTableDataSource(data);
+      this.Datasource.paginator = this.paginator;
     });
     this.ngOnInit();
   }
@@ -47,8 +52,7 @@ export class MoviesComponent implements OnInit {
   getAllMovies() {
     this.moviesService.GetAllMovies().subscribe(
       (e) => {
-        console.log(e);
-        this.Datasource = new MatTableDataSource(e);
+         this.Datasource = new MatTableDataSource(e);
         this.Datasource.paginator = this.paginator;
       },
       (er) => {
@@ -59,13 +63,15 @@ export class MoviesComponent implements OnInit {
 
   createNewMovie() {
     const DialogRef = this.dialog.open(CreateMovieComponent, {
-      data: { issue: MovieModel },
+      data: { data: MovieModel },
     });
     DialogRef.afterOpened().subscribe((e) => {
-      this.getAllMovies();
+      this.getAllMovies()
+      this.refreshMoviesList()
+
     });
     DialogRef.afterClosed().subscribe((result) => {
-      this.refreshMoviesList();
+      this.refreshMoviesList()
     });
     this.refreshMoviesList();
   }
@@ -74,20 +80,26 @@ export class MoviesComponent implements OnInit {
     id: number,
     name: string,
     photoData: string,
-    trailerUrl: string,
-    description: string
+    traileUrl: string,
+    description: string,
+    idHalls: number,
+    isVisibale: boolean
   ) {
     const dialogRef = this.dialog.open(EditMovieComponent, {
       data: {
         id: id,
         name: name,
         photoData: photoData,
-        trailerUrl: trailerUrl,
+        traileUrl: traileUrl,
         description: description,
+        idHalls: idHalls,
+        isVisibale:isVisibale
       },
     });
     dialogRef.afterOpened().subscribe((e) => {
       this.getAllMovies()
+      this.refreshMoviesList()
+
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.refreshMoviesList()
@@ -99,20 +111,28 @@ export class MoviesComponent implements OnInit {
     id: number,
     name: string,
     photoData: string,
-    templateUrl: string,
-    description: string
+    traileUrl: string,
+    description: string,
+    idHalls: number
+
   ) {
     const dialogRef = this.dialog.open(DeleteMovieComponent, {
       data: {
         id: id,
         name: name,
         photoData: photoData,
-        templateUrl: templateUrl,
+        traileUrl: traileUrl,
         description: description,
+        idHalls: idHalls
       },
     });
+    dialogRef.afterOpened().subscribe((e) => {
+      this.getAllMovies()
+      this.refreshMoviesList()
+
+    });
     dialogRef.afterClosed().subscribe((result) => {
-      this.refreshMoviesList();
+      this.refreshMoviesList()
     });
     this.refreshMoviesList();
   }

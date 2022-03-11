@@ -23,10 +23,6 @@
 
         <li class="menu-item"><a routerLink="/contact">Contact</a></li>
         <li class="menu-item">
-          <a mat-button (click)="openDialogBooking()">Add Booking</a>
-        </li>
-
-        <li class="menu-item">
           <a *ngIf="!login" mat-button (click)="openDialog()">Register</a>
         </li>
         <li class="menu-item">
@@ -36,13 +32,14 @@
           <a *ngIf="!out" mat-button (click)="logout()">logOut</a>
         </li>
 
-        <li class="dropdown">
+        <li *ngIf="admin && !out" class="dropdown">
           <button class="dropbtn">Manage</button>
           <div class="dropdown-content">
             <a routerLink="/MoviesCrud">Movies </a>
             <a routerLink="/TimesCrud">Times</a>
             <a routerLink="/HallsCrud">Halls</a>
             <a routerLink="/BookingCrud">Booking</a>
+            <a (click)="openDialogForAdmin()">New Admin</a>
           </div>
         </li>
       </ul>

@@ -2,6 +2,7 @@ import { RegisterModel } from './../../model/RegisterModel';
 import { UserService } from 'src/app/Service/user.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,23 +12,25 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class RegisterComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<RegisterComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any,private toastr: ToastrService,
     private UserService: UserService
   ) {}
   reg: RegisterModel = new RegisterModel();
   onNoClick(): void {
-    this.dialogRef.close();
-  }
+   }
 
   onSubmit() {
     console.log(this.reg);
-
-    this.UserService.register(this.reg).subscribe(
+     this.UserService.register(this.reg).subscribe(
       (data) => {
         window.location.reload();
         this.dialogRef.close();
+        this.toastr.success("Register Success")
+
       },
-      (err) => console.log(err)
+      (err) => this.toastr.error("Faild in Register")
+
+
     );
   }
 

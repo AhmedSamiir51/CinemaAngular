@@ -5,7 +5,7 @@
       <div class="page">
         <div class="breadcrumbs">
           <a routerLink="/home">Home</a>
-          <span>Contact</span>
+          <span>Movies</span>
         </div>
 
         <div
@@ -33,19 +33,6 @@
                 [dataSource]="Datasource"
                 matSort
               >
-                <ng-container matColumnDef="ID">
-                  <th mat-header-cell *matHeaderCellDef>Movies</th>
-                  <td mat-cell *matCellDef="let row">
-                    <a
-                      routerLink="/movie/{{ row.id }}"
-                      mat-icon-button
-                      aria-label="Example icon button with a open in new tab icon"
-                    >
-                      <mat-icon>open_in_new</mat-icon>
-                    </a>
-                  </td>
-                </ng-container>
-
                 <ng-container matColumnDef="Name">
                   <th mat-header-cell *matHeaderCellDef>Movie Name</th>
                   <td mat-cell *matCellDef="let row">{{ row.name }}</td>
@@ -53,38 +40,72 @@
 
                 <ng-container matColumnDef="Photo">
                   <th mat-header-cell *matHeaderCellDef>Poster</th>
-                  <td mat-cell *matCellDef="let row" 
-                      style="height: 25vh;">
-                    <img style="width:50%;height:150px; max-height: 200px;" 
-                    src="https://localhost:44385/{{ row.photoData }}" />
+                  <td mat-cell *matCellDef="let row">
+                    <img
+                      style="width: 70px; height: 57px"
+                      src="https://localhost:44385/{{ row.photoData }}"
+                    />
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="Description">
                   <th mat-header-cell *matHeaderCellDef>Description</th>
-                  <td mat-cell *matCellDef="let row" 
-                  style="text-align:start;">{{ row.description }}</td>
+                  <td mat-cell *matCellDef="let row" style="text-align: start">
+                    {{ row.description }}
+                  </td>
                 </ng-container>
 
+                <ng-container matColumnDef="Halls">
+                  <th mat-header-cell *matHeaderCellDef>Halls</th>
+                  <td mat-cell *matCellDef="let row" style="text-align: start">
+                    {{ row.halls.name }}
+                  </td>
+                </ng-container>
                 <!-- actions -->
                 <ng-container matColumnDef="Actions">
-                <mat-header-cell *matHeaderCellDef>
+                  <mat-header-cell *matHeaderCellDef>
+                    <mat-cell
+                      style="margin-top: 10px"
+                      *matCellDef="let row; let i = index"
+                      class="my-auto"
+                    >
+                      <button mat-icon-button color="accent">
+                        <mat-icon
+                          aria-label="Edit"
+                          (click)="
+                            startEdit(
+                              row.id,
+                              row.name,
+                              row.photoData,
+                              row.traileUrl,
+                              row.description,
+                              row.halls.id,
+                              row.isVisibale
+                            )
+                          "
+                          >edit
+                        </mat-icon>
+                      </button>
 
-                  <mat-cell *matCellDef="let row; let i=index;">
-
-                    <button mat-icon-button color="accent">
-                      <mat-icon aria-label="Edit" 
-                      (click)="startEdit(row.ID, row.name,row.photoData, row.templateUrl, row.description)">edit
-                      </mat-icon>
-                    </button>
-
-                    <button mat-icon-button color="accent">
-                      <mat-icon aria-label="Delete" 
-                      (click)="deleteItem(row.id, row.name, row.photoData, row.templateUrl, row.description)">delete</mat-icon>
-                    </button>
-                  </mat-cell>
-                </mat-header-cell>
-              </ng-container>
+                      <button mat-icon-button color="accent">
+                        <mat-icon
+                          aria-label="Delete"
+                          (click)="
+                            deleteItem(
+                              row.id,
+                              row.name,
+                              row.photoData,
+                              row.halls.name,
+                              row.description,
+                              row.idHalls
+                            )
+                          "
+                          >delete</mat-icon
+                        >
+                      </button>
+                    </mat-cell>
+                  </mat-header-cell>
+                </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr

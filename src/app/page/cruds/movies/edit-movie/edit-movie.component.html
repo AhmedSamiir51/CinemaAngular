@@ -1,1 +1,85 @@
-<p>edit-movie works!</p>
+<div class="container">
+  <h3 mat-dialog-title>New Movie</h3>
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <!--Textarea for demo purposes-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          matInput
+          #inputstate
+          class="form-control"
+          placeholder="Name "
+          [(ngModel)]="data.name"
+          name="name"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          matInput
+          #inputstate
+          class="form-control"
+          placeholder="TraileUrl "
+          [(ngModel)]="data.traileUrl"
+          name="traileUrl"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Hall</mat-label>
+        <mat-select
+          required
+          disableRipple
+          [(ngModel)]="data.idHalls"
+          name="idHalls"
+        >
+          <mat-option *ngFor="let item of dataHalls" [value]="item.id"
+            >{{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea
+          matInput
+          #inputstate
+          placeholder="Description"
+          [(ngModel)]="data.description"
+          name="description"
+          required
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <div style="margin-top: 15px">
+      <mat-checkbox
+        name="isVisibale"
+        [(ngModel)]="data.isVisibale"
+        [ngModelOptions]="{ standalone: true }"
+        class="example-margin"
+        >Is Visibale</mat-checkbox
+      >
+    </div>
+
+    <div mat-dialog-actions>
+      <button
+        mat-button
+        type="submit"
+        [disabled]="!formControl.valid"
+        [mat-dialog-close]="1"
+        (click)="confirmAdd()"
+      >
+        Save
+      </button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

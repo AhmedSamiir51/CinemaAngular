@@ -22,14 +22,15 @@ export class MoviesComponent implements OnInit {
     this.formData.append('ProfilePicture', files[0]);
   }
 
-
   onSubmit() {
+    var aasd=10
 
     this.formData.append('Description', "asd" );
     this.formData.append('Name', "asd" );
     this.formData.append('TraileUrl', "asd" );
-
-this.service.insertMoive(this.formData).subscribe(e=>console.log(e) , er=>console.log(er) )
+    this.formData.append('idHalls',  '10' );
+   this.formData.append('IsVisibale',"true" );
+this.service.InsertMoive(this.formData).subscribe(e=>console.log(e))
 
   }
 

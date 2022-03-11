@@ -2,6 +2,8 @@ export class MovieModel {
   Id?: number;
   name?: string;
   photoData?: string;
-  trailerUrl?: string;
+  TraileUrl?: string;
   description?: string;
+  idHalls?: number;
+  isVisibale?: boolean;
 }

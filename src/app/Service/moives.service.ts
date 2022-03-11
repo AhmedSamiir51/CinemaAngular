@@ -14,17 +14,15 @@ export class MoivesService {
   }
 
   InsertMoive(formModel: any) {
-    return this.http.post(this.baseUrl + '/SaveMovies', formModel, {
-      withCredentials: true,
-    });
-  }
+    return this.http.post(this.baseUrl + "/SaveMovies" ,formModel,{withCredentials:true});
+   }
 
   GetMoiveById(id: any) {
     return this.http.get<any>(this.baseUrl + '/' + id);
   }
 
-  EditMovie(edit: MovieModel) {
-    return this.http.put(this.baseUrl + '/' + edit.Id, edit);
+  EditMovie(edit: any) {
+    return this.http.put(this.baseUrl + '/' + edit.id, edit);
   }
 
   DeleteMovie(id: number) {
