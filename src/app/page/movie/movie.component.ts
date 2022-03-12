@@ -25,7 +25,9 @@ export class MovieComponent implements OnInit {
   constructor(private mService: MoivesService,private sanitizer:DomSanitizer,public dialog: MatDialog,public ar:ActivatedRoute)
   { }
 
+  display:any
   ngOnInit(): void {
+    localStorage.getItem('Role') ==null?this.display=true :this.display=false
   this.mService.GetMoiveById(this.ar.snapshot.params["id"]).subscribe
   (e=>(this.data=e ,  this.imageUrl =this.photoURL(this.data.traileUrl) ) ,
   er=>console.log(er)
@@ -37,8 +39,10 @@ export class MovieComponent implements OnInit {
 
 
 
-openDialogBooking(){
-  const dialogRef = this.dialog.open(BookingComponent  );
+  openDialogBooking(movieId : number){
+  const dialogRef = this.dialog.open(BookingComponent  ,{
+    data: {movieId:movieId }
+  });
 
   dialogRef.afterClosed().subscribe();
 

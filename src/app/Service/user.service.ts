@@ -27,6 +27,7 @@ export class UserService {
           this.logins='1'
           localStorage.setItem('token',this.logins );
           localStorage.setItem('Role',user.roleId );
+          localStorage.setItem('User',user.id );
         }
       })
     );
@@ -53,6 +54,8 @@ export class UserService {
           this.logins='1'
           localStorage.setItem('token',this.logins  );
           localStorage.setItem('Role',user.roleId );
+          localStorage.setItem('User',user.id );
+
         }
       })
     );;
