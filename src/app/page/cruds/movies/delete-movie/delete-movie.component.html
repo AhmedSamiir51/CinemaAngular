@@ -5,7 +5,7 @@
     <p></p>
     Hall Name: {{ data.traileUrl }}
     <p></p>
-    Movie Description: {{ data.description }}
+    Movie Description: {{ data.description | slice: 0:50 }}
     <p></p>
   </div>
   <div mat-dialog-actions>
