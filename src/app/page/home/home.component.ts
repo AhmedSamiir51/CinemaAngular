@@ -23,10 +23,16 @@ export class HomeComponent implements OnInit {
   admin:any
   data:any
 
+  images: any = []; 
+
 
   constructor(private router: Router,public serves: UserService,private toastr: ToastrService,private mService: MoivesService,public dialog: MatDialog)
   {
-
+    this.images = [
+      'https://cdna.artstation.com/p/assets/images/images/032/988/138/large/amir-zand-arrakeen-vista-01-clean2.jpg?1608067529',
+      'https://images.thedirect.com/media/article_full/spider-man-no-way-home-poster-doc-ock.jpg?imgeng=cmpr_75/',
+      'https://i.pinimg.com/564x/65/e6/95/65e695d753020f24091be779fb68c1e6.jpg'
+    ]
   }
 
 

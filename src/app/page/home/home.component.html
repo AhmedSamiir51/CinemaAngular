@@ -3,9 +3,11 @@
   <main class="main-content">
     <div class="container">
       <div class="page">
+        <h2>Up Coming</h2>
+        <hr />
         <div class="product-item">
           <p-carousel
-            [value]="data"
+            [value]="images"
             [numVisible]="1"
             [circular]="true"
             [showNavigators]="false"
@@ -15,7 +17,7 @@
             <ng-template let-movie pTemplate="item" class="product-item">
               <img
                 class="product-image"
-                src="https://localhost:44385/{{ movie.photoData }}"
+                src="{{movie}}"
                 alt="Movie"
               />
             </ng-template>
