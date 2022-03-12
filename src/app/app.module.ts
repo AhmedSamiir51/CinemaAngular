@@ -79,6 +79,7 @@ import { CreateMovieComponent   } from './page/cruds/movies/create-movie/create-
 import { EditMovieComponent } from './page/cruds/movies/edit-movie/edit-movie.component';
 import { DeleteMovieComponent } from './page/cruds/movies/delete-movie/delete-movie.component';
 import { RegisterForAdminComponent } from './page/register/register-for-admin/register-for-admin.component';
+import {CarouselModule} from 'primeng/carousel';
 
 @NgModule({
   declarations: [
@@ -163,6 +164,7 @@ import { RegisterForAdminComponent } from './page/register/register-for-admin/re
     MatTooltipModule,
     MatTreeModule,
     ReactiveFormsModule,
+    CarouselModule,
 
     ToastrModule.forRoot(),
 

@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router,public serves: UserService,private toastr: ToastrService,private mService: MoivesService,public dialog: MatDialog)
   {
 
-
   }
 
 
@@ -46,12 +45,13 @@ export class HomeComponent implements OnInit {
       this.admin=true
     }
 
-this.mService.GetTop3Moive().subscribe(e=>(
-  console.log(e ,"eeeeeeeeeeeeee") ,
-  this.data=e )
-  ,
-  er=>console.log(er))
-
+  this.mService.GetTop3Moive().subscribe( e =>(
+    console.log(e ,"eeeeeeeeeeeeee") ,
+    this.data = e,
+    this.data.photoData = `https://localhost:44385/` + this.data.photoData
+    , console.log(this.data))
+    ,
+    er=>console.log(er))
   }
 
 
