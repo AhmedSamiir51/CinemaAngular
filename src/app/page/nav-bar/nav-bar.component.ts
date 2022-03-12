@@ -57,6 +57,7 @@ this.mService.GetTop3Moive().subscribe(e=>(
     this.router.navigateByUrl('/home');
     localStorage.removeItem('token');
     localStorage.removeItem('Role');
+    localStorage.removeItem('User');
     window.location.reload();
   }
 

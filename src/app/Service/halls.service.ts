@@ -14,7 +14,9 @@ export class HallsService {
     return this.http.get<any[]>( this.baseUrl+"/GetAll" );
   }
 
-
+  GetHallsFromIdMovie(id:number ) {
+    return this.http.get<any>("https://localhost:44385/api/Movies/GetHallIdFromMovies/" +id);
+  }
   GetHallsForMovies( ) {
     return this.http.get<any[]>( this.baseUrl+"/GetAllWhereNotInMovie" );
   }

@@ -2,7 +2,7 @@
   <app-nav-bar class="navbar"></app-nav-bar>
   <main class="main-content">
     <div class="container">
-      <div class="page ">
+      <div class="page">
         <div class="breadcrumbs">
           <a routerLink="/home">Home</a>
           <span>Movie Details</span>
@@ -10,26 +10,24 @@
         <div class="row">
           <section class="col-sm-4">
             <div class="poster-container">
-              <img
-                src="https://yc.cldmlk.com/wmezace6a8ycqfbe2gjcg9vn0m/1645069806568_Poster.jpg"
-              />
-              <!-- <img
-                class="poster"
-                src="https://localhost:44385/{{ data?.photoData }}"
-                alt="Slide 1"
-              /> -->
+              <img src="https://localhost:44385/{{ data.photoData }}" />
             </div>
             <div>
-              <button class="book-btn" mat-button (click)="openDialogBooking()">Add Booking</button>
+              <button
+                class="book-btn"
+                mat-button
+                [disabled]="display"
+                (click)="openDialogBooking(data.id)"
+              >
+                Add Booking
+              </button>
             </div>
           </section>
           <section class="col-md-6">
             <div class="movie-details">
               <div class="">
                 <div class="latest-movie">
-                  <h2>THE LOST CITY</h2>
-                  <p class="pp">Coming Soon to Your Cinema (Sample Site)</p>
-                  <!-- <h2 class="title">{{ data?.name }}</h2> -->
+                  <h2>{{ data.name }}</h2>
                 </div>
               </div>
               <div>
@@ -44,32 +42,19 @@
                   </p>
                   <hr />
                   <p>
-                    Brilliant, but reclusive author Loretta Sage (Sandra
-                    Bullock) has spent her career writing about exotic places in
-                    her popular romance-adventure novels featuring handsome
-                    cover model Alan (Channing Tatum), who has dedicated his
-                    life to embodying the hero character, “Dash.” While on tour
-                    promoting her new book with Alan, Loretta is kidnapped by an
-                    eccentric billionaire (Daniel Radcliffe) who hopes that she
-                    can lead him to the ancient lost city’s treasure from her
-                    latest story. Wanting to prove that he can be a hero in real
-                    life and not just on the pages of her books, Alan sets off
-                    to rescue her. Thrust into an epic jungle adventure, the
-                    unlikely pair will need to work together to survive the
-                    elements and find the ancient treasure before it’s lost
-                    forever.
+                    {{ data.description }}
                   </p>
-                  <!-- <p>{{ data?.description }}</p> -->
                 </div>
               </div>
             </div>
 
-              <iframe
-                [src]="imageUrl"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+            <iframe
+              [src]="imageUrl"
+              frameborder="0"
+              style="width: 673px !important"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </section>
         </div>
       </div>
