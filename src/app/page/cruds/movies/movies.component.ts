@@ -42,7 +42,7 @@ export class MoviesComponent implements OnInit {
   }
 
   refreshMoviesList() {
-    this.moviesService.GetAllMovies().subscribe((data) => {
+    this.moviesService.GetAllMoviesVs().subscribe((data) => {
        this.Datasource = new MatTableDataSource(data);
       this.Datasource.paginator = this.paginator;
     });
@@ -50,7 +50,7 @@ export class MoviesComponent implements OnInit {
   }
 
   getAllMovies() {
-    this.moviesService.GetAllMovies().subscribe(
+    this.moviesService.GetAllMoviesVs().subscribe(
       (e) => {
          this.Datasource = new MatTableDataSource(e);
         this.Datasource.paginator = this.paginator;

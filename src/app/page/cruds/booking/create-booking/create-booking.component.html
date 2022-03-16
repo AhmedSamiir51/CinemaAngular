@@ -50,22 +50,6 @@
     </div>
 
     <div class="form">
-      <mat-form-field appearance="fill">
-        <mat-label>Select Hall</mat-label>
-        <mat-select
-          required
-          disableRipple
-          [(ngModel)]="data.hallsId"
-          name="hallsId"
-        >
-          <mat-option *ngFor="let item of dataHalls" value="{{ item.id }}"
-            >{{ item.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="form">
       <mat-form-field
         class="example-full-width"
         apperance="fill"

@@ -13,6 +13,10 @@ export class MoivesService {
     return this.http.get<MovieModel[]>(this.baseUrl);
   }
 
+  GetAllMoviesVs() {
+    return this.http.get<MovieModel[]>(this.baseUrl+'/AllGetListOfMovies');
+  }
+
   InsertMoive(formModel: any) {
     return this.http.post(this.baseUrl + "/SaveMovies" ,formModel,{withCredentials:true});
    }
