@@ -49,6 +49,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+
 import { MoviesComponent } from './page/movies/movies.component';
 import { BookingComponent } from './page/booking/booking.component';
 import { MovieComponent } from './page/movie/movie.component';
@@ -79,6 +80,7 @@ import { CreateMovieComponent   } from './page/cruds/movies/create-movie/create-
 import { EditMovieComponent } from './page/cruds/movies/edit-movie/edit-movie.component';
 import { DeleteMovieComponent } from './page/cruds/movies/delete-movie/delete-movie.component';
 import { RegisterForAdminComponent } from './page/register/register-for-admin/register-for-admin.component';
+import {CarouselModule} from 'primeng/carousel';
 
 @NgModule({
   declarations: [
@@ -163,6 +165,7 @@ import { RegisterForAdminComponent } from './page/register/register-for-admin/re
     MatTooltipModule,
     MatTreeModule,
     ReactiveFormsModule,
+    CarouselModule,
 
     ToastrModule.forRoot(),
 

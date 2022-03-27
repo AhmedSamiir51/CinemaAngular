@@ -15,94 +15,75 @@ import { RegisterComponent } from '../register/register.component';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
+  login: any;
+  out: any;
+  admin: any;
+  data: any;
 
-  login:any
-  out:any
-  admin:any
-  data:any
-
-
-  constructor(private router: Router,public serves: UserService,private toastr: ToastrService,private mService: MoivesService,public dialog: MatDialog)
-  {
-
-
-  }
-
+  constructor(
+    private router: Router,
+    public serves: UserService,
+    private toastr: ToastrService,
+    private mService: MoivesService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('token')=='1') {
-      this.login=true
-      this.out=false
-    }else{
-      this.login=false
-      this.out=true
+    if (localStorage.getItem('token') == '1') {
+      this.login = true;
+      this.out = false;
+    } else {
+      this.login = false;
+      this.out = true;
     }
 
-    if (localStorage.getItem('Role')=='2') {
-      this.admin=false
-    }else{
-      this.admin=true
+    if (localStorage.getItem('Role') == '2') {
+      this.admin = false;
+    } else {
+      this.admin = true;
     }
 
-this.mService.GetTop3Moive().subscribe(e=>(
-   this.data=e )
-  ,
-  er=>console.log(er))
-
+    this.mService.GetTop3Moive().subscribe(
+      (e) => (this.data = e),
+      (er) => console.log(er)
+    );
   }
-   logout() {
+  logout() {
     this.router.navigateByUrl('/home');
     localStorage.removeItem('token');
     localStorage.removeItem('Role');
+    localStorage.removeItem('User');
     window.location.reload();
   }
 
-  openDialog()
-  {
-   const dialogRef = this.dialog.open(RegisterComponent,
-     {data: RegisterModel});
+  openDialog() {
+    const dialogRef = this.dialog.open(RegisterComponent, {
+      data: RegisterModel,
+    });
 
-   dialogRef.afterClosed().subscribe( data=>
+    dialogRef.afterClosed().subscribe((data) => console.log(data, 'Login'));
+  }
 
-    console.log(data,"Login")
+  openDialogForAdmin() {
+    const dialogRef = this.dialog.open(RegisterForAdminComponent, {
+      data: RegisterModel,
+    });
 
-   );
+    dialogRef.afterClosed().subscribe((data) => console.log(data, 'Login'));
+  }
 
- }
+  openDialogBooking() {
+    const dialogRef = this.dialog.open(BookingComponent);
 
- openDialogForAdmin()
- {
-  const dialogRef = this.dialog.open(RegisterForAdminComponent,
-    {data: RegisterModel});
+    dialogRef.afterClosed().subscribe();
+  }
 
-  dialogRef.afterClosed().subscribe( data=>
+  openDialogToLogin() {
+    const dialogRef = this.dialog.open(LoginComponent, { data: LoginModel });
 
-   console.log(data,"Login")
-
-  );
-
-}
-
-openDialogBooking(){
-  const dialogRef = this.dialog.open(BookingComponent  );
-
-  dialogRef.afterClosed().subscribe();
-
-}
-
-openDialogToLogin()
-{
- const dialogRef = this.dialog.open(LoginComponent,
-   {data: LoginModel});
-
- dialogRef.afterClosed().subscribe( );
-
-}
-
-
-
-
+    dialogRef.afterClosed().subscribe();
+  }
 }
