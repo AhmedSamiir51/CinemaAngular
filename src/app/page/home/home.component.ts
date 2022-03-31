@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   admin: any;
   data: any;
 
+<<<<<<< HEAD
   images: any = [];
 
   constructor(
@@ -36,6 +37,23 @@ export class HomeComponent implements OnInit {
       'https://images.thedirect.com/media/article_full/spider-man-no-way-home-poster-doc-ock.jpg?imgeng=cmpr_75/',
       'https://i.pinimg.com/564x/65/e6/95/65e695d753020f24091be779fb68c1e6.jpg',
     ];
+=======
+  login:any
+  out:any
+  admin:any
+  data:any
+
+  images: any = []; 
+
+
+  constructor(private router: Router,public serves: UserService,private toastr: ToastrService,private mService: MoivesService,public dialog: MatDialog)
+  {
+    this.images = [
+      'https://cdna.artstation.com/p/assets/images/images/032/988/138/large/amir-zand-arrakeen-vista-01-clean2.jpg?1608067529',
+      'https://images.thedirect.com/media/article_full/spider-man-no-way-home-poster-doc-ock.jpg?imgeng=cmpr_75/',
+      'https://i.pinimg.com/564x/65/e6/95/65e695d753020f24091be779fb68c1e6.jpg'
+    ]
+>>>>>>> 9242a5c354020676f847275e6bd74e25b303ff92
   }
 
   ngOnInit(): void {
@@ -53,6 +71,7 @@ export class HomeComponent implements OnInit {
       this.admin = true;
     }
 
+<<<<<<< HEAD
     this.mService.GetTop3Moive().subscribe(
       (e) => (
         console.log(e, 'eeeeeeeeeeeeee'),
@@ -63,6 +82,15 @@ export class HomeComponent implements OnInit {
       ),
       (er) => console.log(er)
     );
+=======
+  this.mService.GetTop3Moive().subscribe( e =>(
+    console.log(e ,"eeeeeeeeeeeeee") ,
+    this.data = e,
+    this.data.photoData = `https://localhost:44385/` + this.data.photoData
+    , console.log(this.data))
+    ,
+    er=>console.log(er))
+>>>>>>> 9242a5c354020676f847275e6bd74e25b303ff92
   }
 
   //LogOut

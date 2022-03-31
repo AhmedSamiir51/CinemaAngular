@@ -30,7 +30,11 @@ export class BookingComponent implements OnInit {
     console.log(this.data)
     this.data.dayBooking=new Date()
     this.TimesService.GetAllTimes().subscribe(e=>this.dataTimes=e)
+<<<<<<< HEAD
     this.HallsService.GetHallsFromIdMovie(this.data.movieId).subscribe(e=>{console.log(e,"a7aa"), this.ddd=e})
+=======
+    this.HallsService.GetHallsFromIdMovie(this.data.movieId).subscribe(e=>{ this.ddd=e})
+>>>>>>> 9242a5c354020676f847275e6bd74e25b303ff92
 
   }
 
@@ -58,7 +62,10 @@ export class BookingComponent implements OnInit {
     this.data.hallsId=this.ddd.id
 
 
+<<<<<<< HEAD
     console.log( this.data," this.data")
+=======
+>>>>>>> 9242a5c354020676f847275e6bd74e25b303ff92
     this.dataService.addBooking(this.data)
     .subscribe(e=>{this.toastr.success("Booking Success") ,this.dialogRef.close()},
     er=>{this.toastr.error("Faild To Booking")});

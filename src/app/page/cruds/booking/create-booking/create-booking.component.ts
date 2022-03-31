@@ -27,6 +27,8 @@ export class CreateBookingComponent implements OnInit {
     dataMovies:any
     dataTimes:any
     dataHalls:any
+    ddd:any
+
   ngOnInit(): void {
     this.data.dayBooking=new Date()
     this.UserService.getalluser().subscribe(e=>this.dataUser=e)
@@ -53,6 +55,9 @@ export class CreateBookingComponent implements OnInit {
 
   }
   public confirmAdd(): void {
+    this.HallsService.GetHallsFromIdMovie(this.data.movieId).subscribe((e: any)=>this.ddd=e)
+    this.data.hallsId=this.ddd.id
+
     this.dataService.addBooking(this.data)
     .subscribe(e=>{this.toastr.success("Created Success") ,this.dialogRef.close()},
     er=>{this.toastr.error("Faild On Create")});
