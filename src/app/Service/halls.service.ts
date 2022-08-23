@@ -2,50 +2,42 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HallsService {
+  constructor(public http: HttpClient) {}
+  baseUrl = 'https://localhost:44385/api/Halls';
 
-  constructor(public http:HttpClient) { }
-  baseUrl="https://localhost:44385/api/Halls"
-
-
-  GetHalls( ) {
-    return this.http.get<any[]>( this.baseUrl+"/GetAll" );
+  GetHalls() {
+    return this.http.get<any[]>(this.baseUrl + '/GetAll');
   }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9242a5c354020676f847275e6bd74e25b303ff92
-  GetHallsFromIdMovie(id:number ) {
-    return this.http.get<any>("https://localhost:44385/api/Movies/GetHallIdFromMovies/" +id);
+  GetHallsFromIdMovie(id: number) {
+    return this.http.get<any>(
+      'https://localhost:44385/api/Movies/GetHallIdFromMovies/' + id
+    );
   }
-  GetHallsForMovies( ) {
-    return this.http.get<any[]>( this.baseUrl+"/GetAllWhereNotInMovie" );
+  GetHallsForMovies() {
+    return this.http.get<any[]>(this.baseUrl + '/GetAllWhereNotInMovie');
   }
 
-  GetHallsForMoviesbyid( id:number) {
-    return this.http.get<any[]>( this.baseUrl+"/GetAllWhereNotInMovie/"+id );
+  GetHallsForMoviesbyid(id: number) {
+    return this.http.get<any[]>(this.baseUrl + '/GetAllWhereNotInMovie/' + id);
   }
 
-  getHallById(i:number){
-    return this.http.get<any>(this.baseUrl+"/"+i)
+  getHallById(i: number) {
+    return this.http.get<any>(this.baseUrl + '/' + i);
   }
 
-  addHalls(body:any){
-    return this.http.post<any>(this.baseUrl+"/",body)
+  addHalls(body: any) {
+    return this.http.post<any>(this.baseUrl + '/', body);
   }
 
-  editHalls(edit:any){
-    return this.http.put(this.baseUrl+"/"+edit.id,edit)
+  editHalls(edit: any) {
+    return this.http.put(this.baseUrl + '/' + edit.id, edit);
   }
 
-
-  deleteHalls(id:number){
-    return this.http.delete(this.baseUrl+"/"+id)
+  deleteHalls(id: number) {
+    return this.http.delete(this.baseUrl + '/' + id);
   }
-
-
-
 }

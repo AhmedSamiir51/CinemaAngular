@@ -11,64 +11,58 @@ import { TimesService } from 'src/app/Service/times.service';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
-  styleUrls: ['./booking.component.scss']
+  styleUrls: ['./booking.component.scss'],
 })
 export class BookingComponent implements OnInit {
-
-  constructor(public dialogRef: MatDialogRef<BookingComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: BookingService,
-     public UserService: UserService, public MoivesService: MoivesService,private toastr: ToastrService,
-     public TimesService: TimesService, public HallsService: HallsService
-
-     ) { }
-    dataTimes:any
-  ddd:any
+  constructor(
+    public dialogRef: MatDialogRef<BookingComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dataService: BookingService,
+    public UserService: UserService,
+    public MoivesService: MoivesService,
+    private toastr: ToastrService,
+    public TimesService: TimesService,
+    public HallsService: HallsService
+  ) {}
+  dataTimes: any;
+  ddd: any;
 
   ngOnInit(): void {
-
-
-    console.log(this.data)
-    this.data.dayBooking=new Date()
-    this.TimesService.GetAllTimes().subscribe(e=>this.dataTimes=e)
-<<<<<<< HEAD
-    this.HallsService.GetHallsFromIdMovie(this.data.movieId).subscribe(e=>{console.log(e,"a7aa"), this.ddd=e})
-=======
-    this.HallsService.GetHallsFromIdMovie(this.data.movieId).subscribe(e=>{ this.ddd=e})
->>>>>>> 9242a5c354020676f847275e6bd74e25b303ff92
-
+    console.log(this.data);
+    this.data.dayBooking = new Date();
+    this.TimesService.GetAllTimes().subscribe((e) => (this.dataTimes = e));
+    this.HallsService.GetHallsFromIdMovie(this.data.movieId).subscribe((e) => {
+      console.log(e, 'a7aa'), (this.ddd = e);
+    });
+    this.HallsService.GetHallsFromIdMovie(this.data.movieId).subscribe((e) => {
+      this.ddd = e;
+    });
   }
 
-
-  formControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  formControl = new FormControl('', [Validators.required, Validators.email]);
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :'';
+    return this.formControl.hasError('required') ? 'Required field' : '';
   }
 
   submit() {
-  // emppty stuff
+    // emppty stuff
   }
   onNoClick(): void {
     this.dialogRef.close();
-
   }
   public confirmAdd(): void {
-
-
-    this.data.userId=localStorage.getItem('User')
-    this.data.hallsId=this.ddd.id
-
-
-<<<<<<< HEAD
-    console.log( this.data," this.data")
-=======
->>>>>>> 9242a5c354020676f847275e6bd74e25b303ff92
-    this.dataService.addBooking(this.data)
-    .subscribe(e=>{this.toastr.success("Booking Success") ,this.dialogRef.close()},
-    er=>{this.toastr.error("Faild To Booking")});
+    this.data.userId = localStorage.getItem('User');
+    this.data.hallsId = this.ddd.id;
+    console.log(this.data, ' this.data');
+    this.dataService.addBooking(this.data).subscribe(
+      (e) => {
+        this.toastr.success('Booking Success'), this.dialogRef.close();
+      },
+      (er) => {
+        this.toastr.error('Faild To Booking');
+      }
+    );
     this.dialogRef.close();
   }
 }

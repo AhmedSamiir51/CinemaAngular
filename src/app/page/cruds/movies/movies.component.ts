@@ -6,7 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 
-import { MoviesComponent as ss  } from 'src/app/page/movies/movies.component';
+import { MoviesComponent as ss } from 'src/app/page/movies/movies.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { DeleteMovieComponent } from './delete-movie/delete-movie.component';
 import { MovieModel } from 'src/app/model/Movie';
@@ -23,7 +23,6 @@ export class MoviesComponent implements OnInit {
   moviesList: any;
   Datasource: any = new MatTableDataSource();
   displayedColumns: string[] = [
-
     'Name',
     'Photo',
     'Description',
@@ -32,27 +31,27 @@ export class MoviesComponent implements OnInit {
   ];
 
   constructor(
-    private moviesService: MoivesService, private toastr: ToastrService,
+    private moviesService: MoivesService,
+    private toastr: ToastrService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.getAllMovies();
-
   }
 
   refreshMoviesList() {
-    this.moviesService.GetAllMoviesVs().subscribe((data) => {
-       this.Datasource = new MatTableDataSource(data);
+    this.moviesService.GetAllMovies().subscribe((data) => {
+      this.Datasource = new MatTableDataSource(data);
       this.Datasource.paginator = this.paginator;
     });
     this.ngOnInit();
   }
 
   getAllMovies() {
-    this.moviesService.GetAllMoviesVs().subscribe(
+    this.moviesService.GetAllMovies().subscribe(
       (e) => {
-         this.Datasource = new MatTableDataSource(e);
+        this.Datasource = new MatTableDataSource(e);
         this.Datasource.paginator = this.paginator;
       },
       (er) => {
@@ -66,12 +65,11 @@ export class MoviesComponent implements OnInit {
       data: { data: MovieModel },
     });
     DialogRef.afterOpened().subscribe((e) => {
-      this.getAllMovies()
-      this.refreshMoviesList()
-
+      this.getAllMovies();
+      this.refreshMoviesList();
     });
     DialogRef.afterClosed().subscribe((result) => {
-      this.refreshMoviesList()
+      this.refreshMoviesList();
     });
     this.refreshMoviesList();
   }
@@ -93,16 +91,15 @@ export class MoviesComponent implements OnInit {
         traileUrl: traileUrl,
         description: description,
         idHalls: idHalls,
-        isVisibale:isVisibale
+        isVisibale: isVisibale,
       },
     });
     dialogRef.afterOpened().subscribe((e) => {
-      this.getAllMovies()
-      this.refreshMoviesList()
-
+      this.getAllMovies();
+      this.refreshMoviesList();
     });
     dialogRef.afterClosed().subscribe((result) => {
-      this.refreshMoviesList()
+      this.refreshMoviesList();
     });
     this.refreshMoviesList();
   }
@@ -114,7 +111,6 @@ export class MoviesComponent implements OnInit {
     traileUrl: string,
     description: string,
     idHalls: number
-
   ) {
     const dialogRef = this.dialog.open(DeleteMovieComponent, {
       data: {
@@ -123,16 +119,15 @@ export class MoviesComponent implements OnInit {
         photoData: photoData,
         traileUrl: traileUrl,
         description: description,
-        idHalls: idHalls
+        idHalls: idHalls,
       },
     });
     dialogRef.afterOpened().subscribe((e) => {
-      this.getAllMovies()
-      this.refreshMoviesList()
-
+      this.getAllMovies();
+      this.refreshMoviesList();
     });
     dialogRef.afterClosed().subscribe((result) => {
-      this.refreshMoviesList()
+      this.refreshMoviesList();
     });
     this.refreshMoviesList();
   }

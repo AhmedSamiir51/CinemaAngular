@@ -21,17 +21,14 @@ export class UserService {
     return this.http.post<User>(this.baseUrl + 'Register', formModel).pipe(
       map((user: any) => {
         if (user) {
-<<<<<<< HEAD
           this.logins = '1';
           localStorage.setItem('token', this.logins);
           localStorage.setItem('Role', user.roleId);
           localStorage.setItem('User', user.id);
-=======
-          this.logins='1'
-          localStorage.setItem('token',this.logins );
-          localStorage.setItem('Role',user.roleId );
-          localStorage.setItem('User',user.id );
->>>>>>> 9242a5c354020676f847275e6bd74e25b303ff92
+          this.logins = '1';
+          localStorage.setItem('token', this.logins);
+          localStorage.setItem('Role', user.roleId);
+          localStorage.setItem('User', user.id);
         }
       })
     );
@@ -52,18 +49,14 @@ export class UserService {
     return this.http.post<User>(this.baseUrl + 'Login', Logins).pipe(
       map((user: any) => {
         if (user) {
-<<<<<<< HEAD
           this.logins = '1';
           localStorage.setItem('token', this.logins);
           localStorage.setItem('Role', user.roleId);
           localStorage.setItem('User', user.id);
-=======
-          this.logins='1'
-          localStorage.setItem('token',this.logins  );
-          localStorage.setItem('Role',user.roleId );
-          localStorage.setItem('User',user.id );
-
->>>>>>> 9242a5c354020676f847275e6bd74e25b303ff92
+          this.logins = '1';
+          localStorage.setItem('token', this.logins);
+          localStorage.setItem('Role', user.roleId);
+          localStorage.setItem('User', user.id);
         }
       })
     );
